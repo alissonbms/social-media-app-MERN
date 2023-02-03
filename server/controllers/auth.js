@@ -6,15 +6,8 @@ import User from "../models/User.js";
 
 export const register = async (req, res) => {
   try {
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      picturePath,
-      location,
-      occupation,
-    } = req.body;
+    const { firstName, lastName, email, password, location, occupation } =
+      req.body;
 
     if (
       !firstName ||
@@ -43,7 +36,11 @@ export const register = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      picturePath,
+      pictureUrl:
+        req.file === undefined
+          ? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+          : req.file.firebaseUrl,
+
       location,
       occupation,
       viewedProfile: Math.floor(Math.random() * 10000),

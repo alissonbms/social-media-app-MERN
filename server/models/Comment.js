@@ -5,7 +5,7 @@ const commentSchema = new Schema(
     userId: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    userPicturePath: String,
+    userPictureUrl: String,
     comment: { type: String, required: true },
     likes: { type: Array, default: [] },
     post: {
@@ -18,4 +18,5 @@ const commentSchema = new Schema(
 );
 
 const Comment = model("Comment", commentSchema);
+
 export default Comment;

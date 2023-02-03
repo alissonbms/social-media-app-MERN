@@ -22,11 +22,9 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-      min: 6,
     },
-    picturePath: {
+    pictureUrl: {
       type: String,
-      default: "random.png",
     },
     location: String,
     occupation: String,
@@ -41,4 +39,5 @@ const userSchema = new Schema(
 );
 
 const User = model("User", userSchema);
+
 export default User;

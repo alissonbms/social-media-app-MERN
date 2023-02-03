@@ -17,17 +17,12 @@ import commentRoutes from "./routes/comment.js";
 import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/post.js";
 import { verifyToken } from "./middlewares/auth.js";
-import User from "./models/User.js";
-import Post from "./models/Post.js";
-import Comment from "./models/Comment.js";
-import { users, posts, comments } from "./data/index.js";
+import { uploadImage } from "./services/firebase.js";
 
 /* CONFIGURATIONS */
 
 const __filename = fileURLToPath(import.meta.url);
-//C:\Users\Flame\Documents\trabalho_dev\social-media-app\server\index.js
 const __dirname = path.dirname(__filename);
-//C:\Users\Flame\Documents\trabalho_dev\social-media-app\server
 
 dotenv.config();
 const app = express();
@@ -39,25 +34,25 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
-//C:\Users\Flame\Documents\trabalho_dev\social-media-app\server\public\assets
 
-/* FILE STORAGE */
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, file);
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
+const Multer = multer({
+  storage: multer.memoryStorage(),
+  limits: 1024 * 1024,
 });
 
-const upload = multer({ storage });
-
-/* ROUTES with FILES */
-
-app.post("/api/auth/register", upload.single("picture"), register);
-app.post("/api/post", upload.single("picture"), verifyToken, createPost);
+app.post(
+  "/api/auth/register",
+  Multer.single("pictureFile"),
+  uploadImage,
+  register
+);
+app.post(
+  "/api/post",
+  verifyToken,
+  Multer.single("pictureFile"),
+  uploadImage,
+  createPost
+);
 
 /* ROUTES */
 
@@ -79,10 +74,6 @@ mongoose
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
-
-    // User.insertMany(users);
-    // Post.insertMany(posts);
-    // Comment.insertMany(comments);
   })
   .catch((error) => {
     console.log(error);
