@@ -5,6 +5,7 @@ import {
   FavoriteOutlined,
   ShareOutlined,
   Close,
+  FeedbackOutlined,
   FormatListBulleted,
   DeleteOutlined,
   EditOutlined,
@@ -282,16 +283,23 @@ const PostWidget = ({
                       </Box>
                     </FlexBetween>
                     <FlexBetween gap="0.2rem">
-                      {comment.userId === loggedInUserId && (
+                      {(comment.userId === loggedInUserId ||
+                        postUserId === loggedInUserId) && (
                         <FlexBetween gap="0.1rem">
-                          <IconButton
-                            onClick={() => {
-                              setIdCommentEditing(comment._id);
-                              setIsEditingComment(!isEditingComment);
-                            }}
-                          >
-                            <EditOutlined sx={{ color: main }} />
-                          </IconButton>
+                          {comment.userId === loggedInUserId ? (
+                            <IconButton
+                              onClick={() => {
+                                setIdCommentEditing(comment._id);
+                                setIsEditingComment(!isEditingComment);
+                              }}
+                            >
+                              <EditOutlined sx={{ color: main }} />
+                            </IconButton>
+                          ) : (
+                            <IconButton>
+                              <FeedbackOutlined sx={{ color: main }} />
+                            </IconButton>
+                          )}
                           <IconButton
                             onClick={() => handleDeleteComment(comment._id)}
                           >

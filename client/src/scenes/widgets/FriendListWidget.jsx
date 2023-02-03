@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ClipLoader } from "react-spinners";
 import { setFriends } from "state";
-import { Message } from "@mui/icons-material";
+import SmsOutlinedIcon from "@mui/icons-material/SmsOutlined";
 
 const FriendListWidget = ({ id }) => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const FriendListWidget = ({ id }) => {
         Friend List
       </Typography>
       <Box display="flex" flexDirection="column" gap="1.5rem">
-        {!isLoading && data && friends ? (
+        {!isLoading && data ? (
           friends?.map((friend, index) => (
             <FlexBetween key={friend._id}>
               <Friend
@@ -45,7 +45,7 @@ const FriendListWidget = ({ id }) => {
                 pictureUrl={friend.pictureUrl}
               />
               <IconButton>
-                <Message />
+                <SmsOutlinedIcon />
               </IconButton>
             </FlexBetween>
           ))

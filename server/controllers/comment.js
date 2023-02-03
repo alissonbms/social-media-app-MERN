@@ -148,7 +148,7 @@ export const deleteComment = async (req, res) => {
       return res.status(400).json({ message: "Comment not found" });
     }
 
-    if (userId !== comment.userId || userId !== post.userId) {
+    if (userId !== comment.userId && userId !== post.userId) {
       return res
         .status(409)
         .json({ message: "You are not the comment author or the post owner" });
