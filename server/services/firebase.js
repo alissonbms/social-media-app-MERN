@@ -7,7 +7,9 @@ const serviceAccount = {
   type: process.env.CREDENTIALS_1,
   project_id: process.env.CREDENTIALS_2,
   private_key_id: process.env.CREDENTIALS_3,
-  private_key: process.env.CREDENTIALS_4,
+  private_key: process.env.CREDENTIALS_4
+    ? Buffer.from(process.env.CREDENTIALS_4).toString()
+    : undefined,
   client_email: process.env.CREDENTIALS_5,
   client_id: process.env.CREDENTIALS_6,
   auth_uri: process.env.CREDENTIALS_7,
