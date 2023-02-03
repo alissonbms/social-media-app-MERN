@@ -21,7 +21,7 @@ e talvez um dashboard básico.
   <img src="./github/social-media-photo.png" alt="photo-app">  
 </div>
 
-### Para uma melhor experiência, teste você mesmo - [Social Media App](https://abms-booking-app.onrender.com/)
+### Para uma melhor experiência, teste você mesmo - [Social Media App](https://abms-socialmedia-app.onrender.com)
 ---
 ### 🚀 Technologies
 
