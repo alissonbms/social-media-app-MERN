@@ -35,7 +35,7 @@ const FriendListWidget = ({ id }) => {
         Friend List
       </Typography>
       <Box display="flex" flexDirection="column" gap="1.5rem">
-        {!isLoading && data ? (
+        {!isLoading && data && friends ? (
           friends?.map((friend, index) => (
             <FlexBetween key={friend._id}>
               <Friend
