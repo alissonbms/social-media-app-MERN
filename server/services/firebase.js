@@ -8,7 +8,7 @@ const serviceAccount = {
   project_id: process.env.CREDENTIALS_2,
   private_key_id: process.env.CREDENTIALS_3,
   private_key: process.env.CREDENTIALS_4
-    ? Buffer.from(process.env.CREDENTIALS_4).toString()
+    ? process.env.CREDENTIALS_4.replace(/\\n/g, "\n")
     : undefined,
   client_email: process.env.CREDENTIALS_5,
   client_id: process.env.CREDENTIALS_6,
