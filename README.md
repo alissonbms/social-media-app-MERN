@@ -37,6 +37,7 @@ e talvez um dashboard básico.
 - [yup](https://www.npmjs.com/package/yup)
 <br/>
 
+- [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://www.mongodb.com/cloud)
 - [mongoose](https://mongoosejs.com/)
 - [Express](https://expressjs.com/pt-br/)
